@@ -2,11 +2,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import css from './ImageGalleryItem.module.css';
 
-const ImageGalleryItem = ({ largeImageURL, webformatURL }) => {
+const ImageGalleryItem = ({ url }) => {
   return (
-    <a href={largeImageURL}>
-      <img src={webformatURL} alt="" loading="lazy" />
-    </a>
+   //  <a href={largeImageURL}>
+      <img src={url} alt="" loading="lazy" />
+   //  </a>
   );
 };
 
