@@ -16,5 +16,8 @@ export async function fetchPictures(query, page) {
     },
   });
   console.log('responce', response);
+//   if (response.data.hits.length === 0){
+// 	console.log('no matching results');
+//   }
   return response;
 }

@@ -25,6 +25,9 @@ class App extends Component {
     try {
       this.setState({ isLoading: true });
       const photos = await API.fetchPictures(this.state.query, this.state.page);
+      if (photos.data.hits.length === 0) {
+        alert('no matching results');
+      }
 
       Array.prototype.push.apply(this.state.pictures, photos.data.hits);
 
@@ -47,9 +50,12 @@ class App extends Component {
   };
 
   onBtnClick = async () => {
-    console.log('Нажали на кнопку');
+    this.setState({ isLoading: true });
     const photos = await API.fetchPictures(this.state.query, this.state.page);
-    console.log(photos);
+    if (photos.data.hits.length === 0) {
+      alert('no more pictures');
+    }
+
     Array.prototype.push.apply(this.state.pictures, photos.data.hits);
     this.setState(state => ({
       pictures: state.pictures,
@@ -69,15 +75,13 @@ class App extends Component {
   };
 
   toggleModal = () => {
-    this.setState({
-      showModal: true,
-    });
+    this.setState(({ showModal }) => ({
+      showModal: !showModal,
+    }));
   };
 
   render() {
     const { pictures, isLoading, showModal, currentPicture } = this.state;
-    console.log('pictures', pictures);
-    console.log(currentPicture);
 
     return (
       <div className={css.App}>
@@ -91,12 +95,14 @@ class App extends Component {
           <ImageGallery
             pictures={pictures}
             clickHandler={this.getModalPicture}
-				showModal={showModal}
+            showModal={showModal}
           />
         )}
         {pictures.length > 0 && <Button ButtonClick={this.onBtnClick} />}
         {showModal && (
-          <Modal currentPicture={currentPicture} />
+          <Modal onClose={this.toggleModal}>
+            <img src={currentPicture[0].largeImageURL} alt="" />
+          </Modal>
         )}
       </div>
     );
