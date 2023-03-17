@@ -9,8 +9,7 @@ class Searchbar extends Component {
   };
 
   handleCange = e => {
-    //  console.log('handleChangeEvt', e.currentTarget.value)
-    this.setState({ searchQuery: e.currentTarget.value.toLowerCase() });
+    this.setState({ searchQuery: e.currentTarget.value.trim().toLowerCase() });
   };
 
   handleSubmit = e => {
@@ -18,8 +17,7 @@ class Searchbar extends Component {
 
     console.log(this.state.searchQuery);
 
-    if (this.state.searchQuery.trim() === '') {
-      
+    if (this.state.searchQuery === '') {
       return;
     }
 
@@ -39,9 +37,9 @@ class Searchbar extends Component {
           </button>
 
           <input
-            className=".SearchForm-input"
+            className={css.SearchFormInput}
             type="text"
-				value={this.state.searchQuery}
+            value={this.state.searchQuery}
             autoComplete="off"
             autoFocus
             placeholder="Search images and photos"

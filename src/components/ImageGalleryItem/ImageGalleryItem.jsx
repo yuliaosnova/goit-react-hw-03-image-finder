@@ -3,15 +3,11 @@ import React from 'react';
 import css from './ImageGalleryItem.module.css';
 
 const ImageGalleryItem = ({ url }) => {
-  return (
-   //  <a href={largeImageURL}>
-      <img src={url} alt="" loading="lazy" />
-   //  </a>
-  );
+  return <img className={css.ImageGalleryItemImage} src={url} alt="" loading="lazy" />;
 };
 
 ImageGalleryItem.propTypes = {
-  //   cards: PropTypes.array.isRequired,
+  url: PropTypes.string.isRequired,
 };
 
 export default ImageGalleryItem;

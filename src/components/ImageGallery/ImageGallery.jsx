@@ -1,35 +1,35 @@
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 import React, { Component } from 'react';
 import css from './ImageGallery.module.css';
 
 class ImageGallery extends Component {
-	state = {
-		pictureId: '',
-	}
+  state = {
+    pictureId: '',
+  };
 
   render() {
-	const arr = this.props.pictures;
+    const arr = this.props.pictures;
 
     return (
       <ul className={css.ImageGallery}>
-			
         {arr.map(picture => (
-          <li key={picture.id} onClick={() => this.props.clickHandler(picture.id)}>
-				
-            <ImageGalleryItem
-              url={this.props.showModal ? picture.webformatURL : picture.largeImageURL }
-            />
+          <li
+            key={picture.id}
+            onClick={() => this.props.clickHandler(picture.id)}
+            className={css.ImageGalleryItem}
+          >
+            <ImageGalleryItem url={picture.webformatURL} />
           </li>
         ))}
-
       </ul>
     );
   }
 }
 
-// ImageGallery.propTypes = {
-//   children: PropTypes.func.
-// };
+ImageGallery.propTypes = {
+  pictures: PropTypes.array.isRequired,
+  //   showModal: PropTypes.bool.isRequired,
+};
 
 export default ImageGallery;
