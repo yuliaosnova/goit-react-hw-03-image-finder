@@ -32,10 +32,10 @@ class App extends Component {
         alert('no matching results');
       }
 
-      Array.prototype.push.apply(this.state.pictures, photos.hits);
+      // Array.prototype.push.apply(this.state.pictures, photos.hits);
 
       this.setState(state => ({
-        pictures: state.pictures,
+        pictures: [...this.state.pictures, ...photos.hits],
         isLoading: false,
         page: (this.state.page += 1),
       }));
@@ -53,9 +53,10 @@ class App extends Component {
         alert('no more pictures');
       }
 
-      Array.prototype.push.apply(this.state.pictures, photos.hits);
+		//ЩО СТОСУЄТЬСЯ setState, push ніколи не використовується. Цей метод мутує масив.
+      // Array.prototype.push.apply(this.state.pictures, photos.hits);
       this.setState(state => ({
-        pictures: state.pictures,
+        pictures: [...this.state.pictures, ...photos.hits],
         isLoading: false,
         page: (this.state.page += 1),
       }));
