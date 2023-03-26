@@ -66,7 +66,7 @@ class App extends Component {
   };
 
   getModalPicture = id => {
-    console.log(id);
+   //  console.log(id);
 
     this.setState(({ currentPicture }) => ({
       currentPicture: this.state.pictures.filter(picture => picture.id === id),
